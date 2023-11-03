@@ -3,10 +3,15 @@ import { ButtonTypePicker } from "../helpers/ButtonTypePicker";
 type buttonProps = {
   type: TButton;
   children?: React.ReactNode;
+  onClick: () => void;
 };
-export default function StyledButton({ type, children }: buttonProps) {
+export default function StyledButton({ type, children, onClick }: buttonProps) {
   const buttonStyles = `${baseStyle} ${ButtonTypePicker(type)}`;
-  return <div className={buttonStyles}>{children}</div>;
+  return (
+    <div className={buttonStyles} onClick={onClick}>
+      {children}
+    </div>
+  );
 }
 
 const baseStyle =

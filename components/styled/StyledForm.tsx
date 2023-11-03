@@ -1,12 +1,19 @@
 import Image from "next/image";
 import { FormTypePicker } from "../helpers/FormTypePicker";
+import { on } from "events";
 type formProps = {
   type: TForm;
   placeholder: string;
   icon: any;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function StyledForm({ type, placeholder, icon }: formProps) {
+export default function StyledForm({
+  type,
+  placeholder,
+  icon,
+  onChange,
+}: formProps) {
   const formStyles = `${baseStyle} ${FormTypePicker(type)}`;
   return (
     <div className={formStyles}>
@@ -15,6 +22,7 @@ export default function StyledForm({ type, placeholder, icon }: formProps) {
         className="w-full h-full bg-transparent outline-none"
         type="text"
         placeholder={placeholder}
+        onChange={onChange}
       />
     </div>
   );
