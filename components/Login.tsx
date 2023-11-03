@@ -6,15 +6,17 @@ import Loginimage from "@/public/loginimage.png";
 import Password from "@/public/password.svg";
 import Image from "next/image";
 import StyledText from "./styled/StyledText";
-import { useState } from "react";
-import { login, auth } from "@/api/auth";
-import { getCookie } from "cookies-next";
-const cookie = getCookie("token");
-console.log("cka", cookie, typeof cookie);
+import { useContext, useDebugValue, useEffect, useState } from "react";
+import { login } from "@/api/auth";
+import { setCookie } from "cookies-next";
+
+import { useRouter } from "next/navigation";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const router = useRouter();
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
@@ -22,11 +24,13 @@ export default function Login() {
     setPassword(e.target.value);
   };
 
-  const loginHandler = () => {
-    login(email, password);
-  };
-  const authHandler = () => {
-    auth(cookie as string);
+  const loginHandler = async () => {
+    const token = await login(email, password);
+    if (token === undefined) {
+      return;
+    }
+    setCookie("token", token);
+    router.push("/auth");
   };
 
   return (
@@ -51,9 +55,6 @@ export default function Login() {
           />
           <StyledButton type="contained" onClick={loginHandler}>
             <StyledText type="button">Login</StyledText>
-          </StyledButton>
-          <StyledButton type="outlined" onClick={authHandler}>
-            <StyledText type="button">Auth</StyledText>
           </StyledButton>
         </div>
       </div>

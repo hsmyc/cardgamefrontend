@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@radix-ui/themes/styles.css";
 import { Theme } from "@radix-ui/themes";
-import { AuthProvider } from "@/context/authcontext";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,7 +20,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Theme>
-          <AuthProvider>{children}</AuthProvider>
+          <div className="min-h-screen">{children}</div>
         </Theme>
       </body>
     </html>

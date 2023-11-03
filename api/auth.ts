@@ -1,4 +1,4 @@
-import { CookieValueTypes, setCookie } from "cookies-next";
+import { setCookie } from "cookies-next";
 
 export const login = async (email: string, password: string) => {
   const res = await fetch("http://localhost:3131/user/login", {
@@ -15,10 +15,8 @@ export const login = async (email: string, password: string) => {
     throw new Error(`Failed with status ${res.status}`);
   }
   const data = await res.json();
-  setCookie("token", data.data.token, {
-    maxAge: 60 * 60 * 24 * 7,
-    httpOnly: true,
-  });
+
+  return data.data.token;
 };
 
 export const auth = async (token: string) => {
@@ -32,6 +30,7 @@ export const auth = async (token: string) => {
     throw new Error(`Failed with status ${res.status}`);
   }
   const data = await res.json();
+
   const uuid = data.data.uuid;
   return uuid;
 };
