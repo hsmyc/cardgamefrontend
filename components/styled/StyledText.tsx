@@ -1,3 +1,4 @@
+import { TText } from "@/global";
 import { TextTypePicker } from "../helpers/TextTypePicker";
 type textProps = {
   type: TText;

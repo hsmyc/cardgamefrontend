@@ -1,3 +1,4 @@
+import { TButton } from "@/global";
 import { ButtonTypePicker } from "../helpers/ButtonTypePicker";
 
 type buttonProps = {
