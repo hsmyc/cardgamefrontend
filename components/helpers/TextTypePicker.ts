@@ -1,3 +1,5 @@
+import { TText } from "@/global";
+
 export const TextTypePicker = (type: TText) => {
   switch (type) {
     case "paragraph":

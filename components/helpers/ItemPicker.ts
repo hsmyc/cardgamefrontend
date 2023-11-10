@@ -1,19 +1,4 @@
-import { TItemColor, TItemSize } from "@/global";
-
-export const ItemSizePicker = (type: TItemSize) => {
-  const sizeMapping = {
-    stash: { outerWidth: "w-24 h-24", innerWidth: "w-20 h-20" },
-    small: { outerWidth: "w-16 h-16", innerWidth: "w-12 h-12" },
-    medium: { outerWidth: "w-24 h-32", innerWidth: "w-20 h-28" },
-    large: { outerWidth: "w-24 h-40", innerWidth: "w-20 h-36" },
-  };
-
-  if (type in sizeMapping) {
-    return sizeMapping[type];
-  } else {
-    throw Error("Item type not found");
-  }
-};
+import { TItemColor } from "@/global";
 
 export const ItemColorPicker = (type: TItemColor) => {
   const colorMapping = {

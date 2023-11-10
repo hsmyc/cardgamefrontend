@@ -1,3 +1,5 @@
+import { TForm } from "@/global";
+
 export const FormTypePicker = (type: TForm) => {
   switch (type) {
     case "error":

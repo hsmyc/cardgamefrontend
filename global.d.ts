@@ -8,5 +8,5 @@ type SignupBody = {
   password: string;
   name: string;
 };
-type TItemSize = "stash" | "small" | "medium" | "large";
+
 type TItemColor = "common" | "uncommon" | "rare" | "epic" | "legendary";
