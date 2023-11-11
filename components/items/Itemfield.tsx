@@ -15,7 +15,7 @@ function Itemfield(props: ItemfieldProps) {
   const ItemFieldStyles_In = `${baseStyleInner} ${
     ItemColorPicker(type).innerBg
   }`;
-  console.log(ItemFieldStyles_Out);
+
   return (
     <div className={ItemFieldStyles_Out}>
       <div className={ItemFieldStyles_In}>

@@ -10,6 +10,5 @@ function Bodyfield() {
     </div>
   );
 }
-const baseStyle =
-  "flex justify-center items-center border-2 border-black flex-col p-4";
+const baseStyle = "flex flex-col gap-2";
 export default Bodyfield;
