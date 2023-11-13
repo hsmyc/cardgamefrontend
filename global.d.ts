@@ -10,3 +10,6 @@ type SignupBody = {
 };
 
 type TItemColor = "common" | "uncommon" | "rare" | "epic" | "legendary";
+type MapSize = "small" | "medium" | "large";
+type TileAsset = "water" | "earth" | "green";
+type TileItemType = "wood" | "stone" | "trap";

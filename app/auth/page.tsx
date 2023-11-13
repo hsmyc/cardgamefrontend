@@ -3,7 +3,7 @@ import { AuthContext } from "@/context/authcontext";
 import { useRouter } from "next/navigation";
 import { useContext } from "react";
 import { deleteCookie } from "cookies-next";
-import Itemsfield from "@/components/items/Itemsfield";
+import Map from "@/components/map/Map";
 export default function Auth() {
   const { uuid } = useContext(AuthContext);
   const router = useRouter();
@@ -14,8 +14,7 @@ export default function Auth() {
 
   return (
     <div>
-      Logged In, this is page!
-      <Itemsfield />
+      <Map size="small" />
       <button onClick={logOutHandler}>Log Out</button>
     </div>
   );
