@@ -4,13 +4,9 @@ import GreenCenter from "@/public/assets/map/greenCenter.png";
 import TileStone from "@/public/assets/map/tilestone.png";
 import TileWood from "@/public/assets/map/tilewood.png";
 import TileTrap from "@/public/assets/map/tiletrap.png";
-import { TileAsset, TileItemType } from "@/global";
+import { TileProps } from "@/global";
 import Image from "next/image";
-interface TileProps {
-  asset: TileAsset;
-  item?: boolean;
-  itemtype: TileItemType;
-}
+
 function Tile({ asset, item, itemtype }: TileProps) {
   return (
     <div className={baseStyle}>

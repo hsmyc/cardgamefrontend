@@ -1,12 +1,6 @@
-import { MapSize, TileAsset, TileItemType } from "@/global";
+import { MapProps, TileProps } from "@/global";
 
-interface MapProps {
-  size: MapSize;
-  assets: TileAsset[];
-  itemtypes: TileItemType[];
-}
-
-export function generateMap(props: MapProps): any[][] {
+export function generateMap(props: MapProps): TileProps[][] {
   const { size, assets, itemtypes } = props;
   let sizeS: number;
   switch (size) {
@@ -26,16 +20,15 @@ export function generateMap(props: MapProps): any[][] {
   const map: any[][] = [];
 
   for (let row = 0; row < sizeS; row++) {
-    const mapRow: any[] = [];
+    const mapRow: TileProps[] = [];
     for (let col = 0; col < sizeS; col++) {
       const randomAssetIndex = Math.floor(Math.random() * assets.length);
-
       const hasItem = Math.random() < 0.25;
       const itemType = itemtypes[Math.floor(Math.random() * itemtypes.length)];
       mapRow.push({
-        assets: assets[randomAssetIndex],
+        asset: assets[randomAssetIndex],
         item: hasItem,
-        itemType: itemType,
+        itemtype: itemType,
       });
     }
     map.push(mapRow);

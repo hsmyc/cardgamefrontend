@@ -1,7 +1,6 @@
 "use client";
 import { getCookie } from "cookies-next";
 import { useRouter } from "next/navigation";
-
 import LoginHeroes from "@/public/assets/heroes-login.png";
 import Image from "next/image";
 import StyledText from "@/components/styled/StyledText";

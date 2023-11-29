@@ -1,9 +1,9 @@
 import { TileAsset, TileItemType } from "@/global";
 import { generateMap } from "../utils/mapgenerator";
-
 import Tile from "./Tile";
 import { mapSizePicker } from "../helpers/MapSizePicker";
 import { useEffect, useState } from "react";
+import { getMap } from "@/actions/db/mapdb";
 
 type MatchmapProps = {
   size: "small" | "medium" | "large";
@@ -15,35 +15,16 @@ type Map = {
 }[][];
 
 function Matchmap({ size }: MatchmapProps) {
-  const [map, setMap] = useState<Map | null>(null);
+  const [map, setMap] = useState<Map | unknown>([]);
 
-  useEffect(() => {
-    setMap(
-      generateMap({
-        size: size,
-        assets: ["green", "water", "earth"],
-        itemtypes: ["stone", "wood", "trap"],
-      })
-    );
-  }, [size]);
+  const mapHandler = async () => {
+    const map = await getMap("first");
+    setMap(map);
+  };
 
   const mapStyle = mapSizePicker(size);
 
-  return (
-    <div className={mapStyle}>
-      {map &&
-        map.map((row, rowIndex) =>
-          row.map((tile, tileIndex) => (
-            <Tile
-              key={`${rowIndex}-${tileIndex}`}
-              asset={tile.assets as TileAsset}
-              item={tile.item}
-              itemtype={tile.itemType}
-            />
-          ))
-        )}
-    </div>
-  );
+  return <div className={mapStyle}></div>;
 }
 
 export default Matchmap;
