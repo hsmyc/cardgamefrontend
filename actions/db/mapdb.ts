@@ -1,11 +1,7 @@
 "use server";
 import { getRedis } from "@/lib/redis";
-import { clear } from "console";
-type Map = {
-  size: number;
-  itemsize: number;
-};
-export async function setMap(name: string, key: Map) {
+
+export async function setMap(name: string, key: Tile[][]) {
   const keyJ = JSON.stringify(key);
   const redis = await getRedis();
   const res = await redis.call("JSON.SET", name, "$", keyJ);

@@ -1,7 +1,7 @@
-import { MapProps, TileProps } from "@/global";
+import { setMap } from "@/actions/db/mapdb";
+import { assets } from "./constants";
 
-export function generateMap(props: MapProps): TileProps[][] {
-  const { size, assets, itemtypes } = props;
+export function generateMap(size: MapSize): Tile[][] {
   let sizeS: number;
   switch (size) {
     case "small":
@@ -17,21 +17,19 @@ export function generateMap(props: MapProps): TileProps[][] {
       sizeS = 8;
       break;
   }
+  console.log(sizeS);
   const map: any[][] = [];
 
   for (let row = 0; row < sizeS; row++) {
-    const mapRow: TileProps[] = [];
+    const mapRow: Tile[] = [];
     for (let col = 0; col < sizeS; col++) {
       const randomAssetIndex = Math.floor(Math.random() * assets.length);
-      const hasItem = Math.random() < 0.25;
-      const itemType = itemtypes[Math.floor(Math.random() * itemtypes.length)];
       mapRow.push({
-        asset: assets[randomAssetIndex],
-        item: hasItem,
-        itemtype: itemType,
+        type: assets[randomAssetIndex],
       });
     }
     map.push(mapRow);
+    setMap(`map-${size}`, map);
   }
 
   return map;

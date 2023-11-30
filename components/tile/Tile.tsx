@@ -4,27 +4,26 @@ import GreenCenter from "@/public/assets/map/greenCenter.png";
 import TileStone from "@/public/assets/map/tilestone.png";
 import TileWood from "@/public/assets/map/tilewood.png";
 import TileTrap from "@/public/assets/map/tiletrap.png";
-import { TileProps } from "@/global";
 import Image from "next/image";
 
-function Tile({ asset, item, itemtype }: TileProps) {
+function Tile({ type, itemtype }: Tile) {
   return (
     <div className={baseStyle}>
-      {asset === "earth" ? (
+      {type === "earth" ? (
         <Image
           src={EarthCenter}
           alt="Picture of the author"
           width={64}
           height={64}
         />
-      ) : asset === "water" ? (
+      ) : type === "water" ? (
         <Image
           src={WaterCenter}
           alt="Picture of the author"
           width={64}
           height={64}
         />
-      ) : asset === "green" ? (
+      ) : type === "green" ? (
         <Image
           src={GreenCenter}
           alt="Picture of the author"
@@ -39,7 +38,7 @@ function Tile({ asset, item, itemtype }: TileProps) {
           height={64}
         />
       )}
-      {item && (
+      {itemtype && (
         <div className="absolute top-4 left-4 ">
           <Image
             src={
@@ -58,5 +57,5 @@ function Tile({ asset, item, itemtype }: TileProps) {
     </div>
   );
 }
-const baseStyle = "m-0 p-0 border-2 relative ";
+const baseStyle = "m-[1px] p-0 relative w-fit border-2 border-black";
 export default Tile;
