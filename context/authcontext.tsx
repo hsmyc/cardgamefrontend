@@ -1,5 +1,5 @@
 "use client";
-import { createContext, use, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { getCookie } from "cookies-next";
 import { auth } from "@/api/auth";
 import { useRouter } from "next/navigation";
