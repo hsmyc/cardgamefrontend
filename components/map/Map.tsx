@@ -16,7 +16,7 @@ function Matchmap({ size }: MapProps) {
     }
     setMapS(JSON.parse(map as string));
   };
-
+  console.log(JSON.stringify(mapS));
   const mapStyle = mapSizePicker(size);
 
   return (
@@ -25,7 +25,7 @@ function Matchmap({ size }: MapProps) {
         mapS.map((row: Tile[], index: number) => (
           <div key={index}>
             {row.map((tile: Tile, index) => (
-              <Tile key={index} type={tile.type} />
+              <Tile key={index} type={tile.type} itemtype={tile.itemtype} />
             ))}
           </div>
         ))

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import LoginHeroes from "@/public/assets/heroes-login.png";
 import Image from "next/image";
 import StyledText from "@/components/styled/StyledText";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Login from "@/components/user/Login";
 import Signup from "@/components/user/Signup";
 import StyledButton from "@/components/styled/StyledButton";
@@ -12,10 +12,11 @@ export default function Home() {
   const token = getCookie("token");
   const router = useRouter();
   const [isLogin, setIsLogin] = useState(true);
-
-  if (token !== undefined) {
-    router.push("/auth");
-  }
+  useEffect(() => {
+    if (token !== undefined) {
+      router.push("/auth");
+    }
+  }, [token, router]);
   return (
     <main className="min-h-screen">
       <div className={loginStyles}>

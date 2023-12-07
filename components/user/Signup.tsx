@@ -34,7 +34,6 @@ function Signup() {
       password,
     };
     const res = await signup(body);
-    console.log(res);
   };
 
   return (

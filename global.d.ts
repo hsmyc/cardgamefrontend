@@ -8,6 +8,7 @@ type TileItemType = "wood" | "stone" | "trap";
 interface Tile {
   type: TileAsset;
   itemtype?: TileItemType;
+  hasPawn?: boolean;
 }
 type MapProps = {
   size: MapSize;

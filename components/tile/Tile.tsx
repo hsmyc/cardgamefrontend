@@ -5,8 +5,16 @@ import TileStone from "@/public/assets/map/tilestone.png";
 import TileWood from "@/public/assets/map/tilewood.png";
 import TileTrap from "@/public/assets/map/tiletrap.png";
 import Image from "next/image";
+import Char from "../char/char";
 
-function Tile({ type, itemtype }: Tile) {
+function Tile({ type, itemtype, hasPawn }: Tile) {
+  const pawnStyle = () => {
+    if (itemtype) {
+      return "absolute top-4 left-4 border-2 border-black";
+    } else {
+      return "absolute top-4 left-4";
+    }
+  };
   return (
     <div className={baseStyle}>
       {type === "earth" ? (
@@ -54,8 +62,15 @@ function Tile({ type, itemtype }: Tile) {
           />
         </div>
       )}
+
+      {hasPawn && (
+        <div className={pawnStyle()}>
+          <Char />
+        </div>
+      )}
     </div>
   );
 }
 const baseStyle = "m-[1px] p-0 relative w-fit border-2 border-black";
+
 export default Tile;

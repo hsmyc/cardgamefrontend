@@ -1,5 +1,5 @@
 import { setMap } from "@/actions/db/mapdb";
-import { assets } from "./constants";
+import { assets, items } from "./constants";
 
 export function generateMap(size: MapSize): Tile[][] {
   let sizeS: number;
@@ -17,16 +17,24 @@ export function generateMap(size: MapSize): Tile[][] {
       sizeS = 8;
       break;
   }
-  console.log(sizeS);
+
   const map: any[][] = [];
 
   for (let row = 0; row < sizeS; row++) {
     const mapRow: Tile[] = [];
     for (let col = 0; col < sizeS; col++) {
       const randomAssetIndex = Math.floor(Math.random() * assets.length);
-      mapRow.push({
-        type: assets[randomAssetIndex],
-      });
+      const hasItem = Math.random() < 0.2;
+      if (hasItem) {
+        const randomItemIndex = Math.floor(Math.random() * items.length);
+        mapRow.push({
+          type: assets[randomAssetIndex],
+          itemtype: items[randomItemIndex],
+        });
+        continue;
+      } else {
+        mapRow.push({ type: assets[randomAssetIndex] });
+      }
     }
     map.push(mapRow);
     setMap(`map-${size}`, map);
