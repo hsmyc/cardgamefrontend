@@ -1,7 +1,5 @@
-import { TForm } from "@/global";
-
-export const FormTypePicker = (type: TForm) => {
-  switch (type) {
+export const FormTypePicker = (mode: TForm) => {
+  switch (mode) {
     case "error":
       return "border-2 border-red-500";
     case "success":

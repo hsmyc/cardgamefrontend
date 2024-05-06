@@ -31,13 +31,15 @@ function Login() {
   return (
     <div className={formFieldStyles}>
       <StyledForm
-        type="normal"
+        mode="normal"
+        type="email"
         placeholder="Email"
         icon={Email}
         onChange={handleEmailChange}
       />
       <StyledForm
-        type="normal"
+        mode="normal"
+        type="password"
         placeholder="Password"
         icon={Password}
         onChange={handlePasswordChange}

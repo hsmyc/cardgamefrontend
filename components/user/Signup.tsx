@@ -4,7 +4,7 @@ import StyledForm from "@/components/styled/StyledForm";
 import StyledText from "@/components/styled/StyledText";
 import { useState } from "react";
 import { signup } from "@/api/auth";
-
+import { validatePassword } from "../helpers/FormValidation";
 function Signup() {
   const [isEmailError, setIsEmailError] = useState(false);
   const [isPasswordError, setIsPasswordError] = useState(false);
@@ -13,6 +13,16 @@ function Signup() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setpasswordConfirm] = useState("");
   const [isPasswordMatch, setIsPasswordMatch] = useState(true);
+  const [isPasswordValid, setIsPasswordValid] = useState<PasswordValidation>({
+    status: true,
+    message: "",
+  });
+
+  const handlePasswordValidation = (password: string) => {
+    const result = validatePassword(password);
+    setIsPasswordValid(result);
+    console.log(result);
+  };
 
   const handleSignup = async () => {
     if (password !== passwordConfirm) {
@@ -39,22 +49,28 @@ function Signup() {
   return (
     <div className={baseStyle}>
       <StyledForm
-        type="normal"
+        mode="normal"
+        type="text"
         placeholder="Name"
         onChange={(e) => setName(e.target.value)}
       />
       <StyledForm
-        type={isEmailError ? "error" : "normal"}
+        mode={isEmailError ? "error" : "normal"}
+        type="email"
         placeholder="Email"
         onChange={(e) => setEmail(e.target.value)}
       />
       <StyledForm
-        type={isPasswordError ? "error" : "normal"}
+        mode={isPasswordError || !isPasswordValid.status ? "error" : "normal"}
+        type="password"
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
+        onBlur={() => handlePasswordValidation(password)}
+        message={isPasswordValid.message}
       />
       <StyledForm
-        type={isPasswordMatch ? "normal" : "error"}
+        mode={isPasswordMatch ? "normal" : "error"}
+        type="password"
         placeholder="Confirm Password"
         onChange={(e) => setpasswordConfirm(e.target.value)}
         onBlur={() => {
@@ -72,6 +88,6 @@ function Signup() {
   );
 }
 
-const baseStyle = "flex flex-col gap-4 ";
+const baseStyle = "flex flex-col gap-4";
 
 export default Signup;

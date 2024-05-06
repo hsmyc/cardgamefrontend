@@ -25,3 +25,8 @@ interface Tile {
   x: number;
   y: number;
 }
+
+type PasswordValidation = {
+  status: boolean;
+  message: string;
+};
